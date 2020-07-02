@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Новости-->
+        <!--Main View Controller-->
         <scene sceneID="ZYr-Id-24Z">
             <objects>
-                <tabBarController storyboardIdentifier="MainViewController" title="Новости" automaticallyAdjustsScrollViewInsets="NO" id="xlY-o0-j04" customClass="MainViewController" customModule="AppForVK" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainViewController" automaticallyAdjustsScrollViewInsets="NO" id="xlY-o0-j04" customClass="MainViewController" customModule="AppForVK" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="czg-pf-oGD">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -22,12 +22,12 @@
                         <segue destination="tSk-Ah-JcD" kind="relationship" relationship="viewControllers" id="EPE-q3-9lv"/>
                         <segue destination="q2Z-DH-HMe" kind="relationship" relationship="viewControllers" id="CEv-0n-dg7"/>
                         <segue destination="k1z-kA-DQB" kind="relationship" relationship="viewControllers" id="Tym-oe-LR6"/>
-                        <segue destination="f4m-zj-5MM" kind="relationship" relationship="viewControllers" id="rls-rR-42Y"/>
+                        <segue destination="cKg-uX-lAJ" kind="relationship" relationship="viewControllers" id="GFm-k3-jaS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xLw-Nw-sKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-135.19999999999999" y="-928.78560719640188"/>
+            <point key="canvasLocation" x="-524" y="-931"/>
         </scene>
         <!--NewsFeed-->
         <scene sceneID="Ste-Pi-1MA">
@@ -42,10 +42,10 @@
         <!--Messages-->
         <scene sceneID="b45-Ph-Pf9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1N4-h0-ANK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Messages" id="k1z-kA-DQB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="gNa-V8-uGZ"/>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1N4-h0-ANK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="758" y="-883"/>
         </scene>
@@ -216,53 +216,53 @@
             </objects>
             <point key="canvasLocation" x="2506" y="-1325"/>
         </scene>
-        <!--Newstab-->
-        <scene sceneID="3o8-5z-GYL">
+        <!--OurNews-->
+        <scene sceneID="KeM-ZA-uOX">
             <objects>
-                <navigationController title="Newstab" id="f4m-zj-5MM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" image="News" id="SLx-lu-7VK"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="p4m-yw-Z6n">
+                <navigationController id="cKg-uX-lAJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="OurNews" image="News" id="cl7-za-AGQ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hOI-oy-ruP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="5uu-Vi-SjV" kind="relationship" relationship="rootViewController" id="8Tq-2V-2jJ"/>
+                        <segue destination="JMt-oP-n3j" kind="relationship" relationship="rootViewController" id="JAi-Jo-apo"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2bJ-w9-CGc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cbC-n3-eVE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1086" y="-94"/>
+            <point key="canvasLocation" x="-1122" y="312"/>
         </scene>
-        <!--News Tab View Controller-->
-        <scene sceneID="dEJ-62-wGd">
+        <!--Our News View Controller-->
+        <scene sceneID="eEe-YS-nrR">
             <objects>
-                <viewController id="5uu-Vi-SjV" customClass="NewsTabViewController" customModule="AppForVK" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vSH-uP-uLC">
+                <viewController id="JMt-oP-n3j" customClass="OurNewsViewController" customModule="AppForVK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JNr-I2-3WW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w2k-CN-kxz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dWa-QQ-Tex">
                                 <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="gtW-MI-xTU" firstAttribute="trailing" secondItem="w2k-CN-kxz" secondAttribute="trailing" id="PRo-IN-kVN"/>
-                            <constraint firstItem="gtW-MI-xTU" firstAttribute="bottom" secondItem="w2k-CN-kxz" secondAttribute="bottom" id="oOQ-fp-ktZ"/>
-                            <constraint firstItem="w2k-CN-kxz" firstAttribute="top" secondItem="gtW-MI-xTU" secondAttribute="top" id="zha-CT-wjz"/>
-                            <constraint firstItem="w2k-CN-kxz" firstAttribute="leading" secondItem="gtW-MI-xTU" secondAttribute="leading" id="zxo-VK-Bmq"/>
+                            <constraint firstItem="kf0-vs-1lG" firstAttribute="trailing" secondItem="dWa-QQ-Tex" secondAttribute="trailing" id="GoI-AQ-pPA"/>
+                            <constraint firstItem="dWa-QQ-Tex" firstAttribute="leading" secondItem="kf0-vs-1lG" secondAttribute="leading" id="jJA-QJ-k1h"/>
+                            <constraint firstItem="kf0-vs-1lG" firstAttribute="bottom" secondItem="dWa-QQ-Tex" secondAttribute="bottom" id="ks0-Jb-Sdc"/>
+                            <constraint firstItem="dWa-QQ-Tex" firstAttribute="top" secondItem="kf0-vs-1lG" secondAttribute="top" id="xmu-Ve-fiO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="gtW-MI-xTU"/>
+                        <viewLayoutGuide key="safeArea" id="kf0-vs-1lG"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hWk-6p-xkg"/>
+                    <navigationItem key="navigationItem" id="ggQ-vP-flC"/>
                     <connections>
-                        <outlet property="tableView" destination="w2k-CN-kxz" id="FjS-Qu-JmK"/>
+                        <outlet property="tableView" destination="dWa-QQ-Tex" id="njc-ES-qoU"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XyY-y4-aFu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cjO-za-MRT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-226" y="-94"/>
+            <point key="canvasLocation" x="-186" y="312"/>
         </scene>
         <!--Группы-->
         <scene sceneID="jch-X3-kc6">

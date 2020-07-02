@@ -11,6 +11,7 @@ import SwiftyJSON
 import RealmSwift
 
 class News: Object {
+    
     @objc dynamic var newsType = ""
     @objc dynamic var titlePostTime: Double = 0.0
     @objc dynamic var geoCoordinates = ""

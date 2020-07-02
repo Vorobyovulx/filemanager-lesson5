@@ -21,7 +21,7 @@ class OurNewsCell: UITableViewCell {
     @IBOutlet private weak var viewedImageView: UIImageView!
     @IBOutlet private weak var viewedLabel: UILabel!
     
-    func configure(with news: News, owner: Owner?) {
+    func configure(with news: News, owner: Owner?, image: UIImage?) {
         guard let uOwner = owner else {
             return
         }
@@ -31,7 +31,7 @@ class OurNewsCell: UITableViewCell {
         
         ownerNameLabel.text = userName.isEmpty ? groupName : userName
         
-        ownerImageView.kf.setImage(with: URL(string: uOwner.ownerPhoto))
+        ownerImageView.image = image
         
         newsTextLabel.text = news.postText
     }

@@ -15,10 +15,15 @@ class OurNewsViewController: UIViewController {
    
     private let newsService = VkNewsService()
     
+    private var photoService: PhotoService?
+    
     var vkNews: VkNews?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        photoService = PhotoService(container: tableView)
+        
         configureTableView()
         
         newsService.loadVkNewsFeed(
@@ -75,7 +80,11 @@ extension OurNewsViewController: UITableViewDataSource {
         
         let owner = ownerGroup == nil ? ownerUser : ownerGroup
         
-        uCell.configure(with: uVkNews.items[indexPath.row], owner: owner)
+        let urlImage = owner?.ownerPhoto ?? ""
+    
+        let image = photoService?.getPhoto(atIndexPath: indexPath, byUrl: urlImage)
+        
+        uCell.configure(with: uVkNews.items[indexPath.row], owner: owner, image: image)
     
         return uCell
     }

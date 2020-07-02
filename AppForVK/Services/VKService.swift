@@ -20,13 +20,13 @@ class VKService: VKServiceInterface {
     let baseUrl = "https://api.vk.com"
     let versionAPI = "5.92"
     
-    static let sharedManager: Session = {
+    static let sharedManager: SessionManager = {
         let config = URLSessionConfiguration.default
         
-        config.httpAdditionalHeaders = Session.defaultHTTPHeaders
+        config.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         config.timeoutIntervalForRequest = 40
         
-        let manager = AF.SessionManager(configuration: config)
+        let manager = Alamofire.SessionManager(configuration: config)
         return manager
     }()
     
@@ -160,7 +160,7 @@ class VKService: VKServiceInterface {
         ]
         let url = baseUrl + path
         
-        VKService.sharedManager.request(url, method: .get, parameters: parameters).responseJSON(queue: .global(qos: .userInteractive)) { response in
+        VKService.sharedManager.request(url, method: .get, parameters: parameters).responseJSON() { response in
             print(VKService.sharedManager.request(url, method: .get, parameters: parameters))
             switch response.result {
             case .success(let value):
@@ -169,24 +169,13 @@ class VKService: VKServiceInterface {
                 var users = [Owner]()
                 var groups = [Owner]()
                 var nextFrom = ""
-                
-                let jsonGroup = DispatchGroup()
-                DispatchQueue.global().async(group: jsonGroup) {
+
                     news = json["response"]["items"].arrayValue.map { News(json: $0) }
-                }
-                DispatchQueue.global().async(group: jsonGroup) {
                     users = json["response"]["profiles"].arrayValue.map { Owner(json: $0) }
-                }
-                DispatchQueue.global().async(group: jsonGroup) {
                     groups = json["response"]["groups"].arrayValue.map { Owner(json: $0) }
-                }
-                DispatchQueue.global().async(group: jsonGroup) {
                     nextFrom = json["response"]["next_from"].stringValue
+                
                     Session.shared.nextFrom = nextFrom
-                }
-                jsonGroup.notify(queue: DispatchQueue.main) {
-                    completion?(news, users, groups, nextFrom, nil)
-                }
             case .failure(let error):
                 completion?(nil, nil, nil, nil, error)
             }

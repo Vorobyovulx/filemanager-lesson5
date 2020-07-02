@@ -32,7 +32,7 @@ class FriendsController: UITableViewController, UISearchBarDelegate {
     private var textFieldInsideSearchBar: UITextField?
     private var iconView: UIImageView?
     
-    var friendsArr = [User]()
+    var friendsArray = [User]()
     
     //MARK: - Lifecycle
     
@@ -48,35 +48,34 @@ class FriendsController: UITableViewController, UISearchBarDelegate {
         
         let queue = OperationQueue()
         
-        let operationLoading = BlockOperation( block: { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            self.vkService.loadVKFriends(for: Session.shared.userId) { friends, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                } else if let friends = friends {
-                    self.friendsArr = friends
-                    //
-                }
-            }
-            print("HERE 1!!!!")
-        })
-        
-        let operationSaving = BlockOperation(
+        let operationLoading = BlockOperation(
             block: { [weak self] in
-                RealmProvider.save(items: self!.friendsArr)
-                print("HERE 2!!!!")
+                guard let self = self else {
+                    print("----")
+                    return
+                }
+                self.vkService.loadVKFriends(for: Session.shared.userId) { friends, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    } else if let friends = friends {
+                        self.friendsArray = friends
+                    }
+                }
+                print("HERE 1")
             }
         )
-
+        let operationSaving = BlockOperation(
+            block: { [weak self] in
+                RealmProvider.save(items: self?.friendsArray ?? [])
+                print("HERE 2")
+            }
+        )
+        
         queue.addOperation(operationLoading)
         queue.addOperation(operationSaving)
         
         operationLoading.addDependency(operationSaving)
-
         
         vkService.loadVKFriends(for: Session.shared.userId) { friends, error in
             if let error = error {
@@ -86,6 +85,7 @@ class FriendsController: UITableViewController, UISearchBarDelegate {
                 RealmProvider.save(items: friends)
             }
         }
+        
         pairTableAndRealm()
         tableView.keyboardDismissMode = .onDrag
     }
